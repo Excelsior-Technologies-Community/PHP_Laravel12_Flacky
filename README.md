@@ -1003,35 +1003,43 @@ Opening the browser URL loads the application so you can test CRUD functionality
 ### Home Page:
 
 
+<img src="screenshots/Screenshot 2026-03-13 110107.png" width="900">
+
 
 ### Create Flack Page:
 
+
+<img src="screenshots/Screenshot 2026-03-13 110132.png" width="900">
 
 
 ### Successfully Created Flack:
 
 
+<img src="screenshots/Screenshot 2026-03-13 110140.png" width="900">
 
 
 ### Edit Flack Page:
 
 
+<img src="screenshots/Screenshot 2026-03-13 110152.png" width="900">
 
 
 ### Successfully Edit Flack:
 
 
+<img src="screenshots/Screenshot 2026-03-13 110204.png" width="900">
 
 
 ### Show Flack Page:
 
 
+<img src="screenshots/Screenshot 2026-03-13 110417.png" width="900">
 
 
 ### Delete Flack:
 
 
-
+<img src="screenshots/Screenshot 2026-03-13 110356.png" width="900">
 
 
 ---
