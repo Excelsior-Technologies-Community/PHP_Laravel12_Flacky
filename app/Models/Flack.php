@@ -9,10 +9,10 @@ class Flack extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+     protected $fillable = [
         'title',
         'body',
-
+        'status'
     ];
 
     public function user()

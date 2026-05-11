@@ -13,7 +13,7 @@
         }
 
         .header {
-            background: #2c3e50;
+            background: linear-gradient(45deg, #2c3e50, #4b6584);
             color: white;
             text-align: center;
             padding: 20px;
@@ -33,13 +33,15 @@
         }
 
         input,
-        textarea {
+        textarea,
+        select {
             width: 100%;
             padding: 12px;
             margin-top: 10px;
             margin-bottom: 20px;
             border-radius: 6px;
             border: 1px solid #ddd;
+            box-sizing: border-box;
         }
 
         button {
@@ -49,6 +51,11 @@
             padding: 10px 18px;
             border-radius: 25px;
             cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
         }
 
         .back {
@@ -56,6 +63,13 @@
             margin-top: 10px;
             text-decoration: none;
             color: #2c3e50;
+        }
+
+        @media(max-width:768px) {
+
+            .container {
+                width: 92%;
+            }
         }
     </style>
 
@@ -78,17 +92,51 @@
 
                 <label>Title</label>
 
-                <input type="text" name="title" value="{{ $flack->title }}">
+                <input
+                    type="text"
+                    name="title"
+                    value="{{ $flack->title }}"
+                >
 
                 <label>Description</label>
 
-                <textarea name="body" rows="5">{{ $flack->body }}</textarea>
+                <textarea
+                    name="body"
+                    rows="5"
+                >{{ $flack->body }}</textarea>
 
-                <button>Update Flack</button>
+                <label>Status</label>
+
+                <select name="status">
+
+                    <option
+                        value="Draft"
+                        {{ $flack->status == 'Draft' ? 'selected' : '' }}
+                    >
+                        Draft
+                    </option>
+
+                    <option
+                        value="Published"
+                        {{ $flack->status == 'Published' ? 'selected' : '' }}
+                    >
+                        Published
+                    </option>
+
+                </select>
+
+                <button>
+                    Update Flack
+                </button>
 
             </form>
 
-            <a class="back" href="{{ route('flacks.index') }}">← Back</a>
+            <a
+                class="back"
+                href="{{ route('flacks.index') }}"
+            >
+                ← Back
+            </a>
 
         </div>
 
