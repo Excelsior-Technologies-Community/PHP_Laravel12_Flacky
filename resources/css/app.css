@@ -1,42 +1,64 @@
-/* Global Styles */
+@import "tailwindcss";
 
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    background:#f4f6f9;
-    margin:0;
-    padding:0;
+@theme {
+    --color-primary: #4e73df;
+    --color-primary-dark: #2e59d9;
+    --color-bg-light: #f4f6f9;
+    --color-bg-dark: #0f172a;
+    --color-card-light: #ffffff;
+    --color-card-dark: #1e293b;
+    --font-sans: Arial, Helvetica, sans-serif;
 }
 
-header{
-    background:#4e73df;
-    color:white;
-    padding:15px;
-    text-align:center;
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+    font-family: var(--font-sans);
+    background: var(--color-bg-light);
+    margin: 0;
+    padding: 0;
 }
 
-.container{
-    width:80%;
-    margin:auto;
-    margin-top:30px;
+.dark body {
+    background: var(--color-bg-dark);
 }
 
-.card{
-    background:white;
-    padding:20px;
-    margin-bottom:20px;
-    border-radius:8px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+header {
+    background: var(--color-primary);
+    color: white;
+    padding: 15px;
+    text-align: center;
 }
 
-button{
-    background:#4e73df;
-    color:white;
-    border:none;
-    padding:8px 15px;
-    border-radius:5px;
-    cursor:pointer;
+.container {
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
 }
 
-button:hover{
-    background:#2e59d9;
+.card {
+    background: var(--color-card-light);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark .card {
+    background: var(--color-card-dark);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+button {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: var(--color-primary-dark);
 }

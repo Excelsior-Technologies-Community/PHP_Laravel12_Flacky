@@ -11,7 +11,6 @@ class FlackController extends Controller
     {
         $query = Flack::latest();
 
-        // Search Feature
         if ($request->search) {
 
             $query->where(function ($q) use ($request) {
@@ -19,9 +18,19 @@ class FlackController extends Controller
                 $q->where('title', 'LIKE', '%' . $request->search . '%')
                     ->orWhere('body', 'LIKE', '%' . $request->search . '%');
             });
+
+            $history = session()->get('search_history', []);
+
+            if (!in_array($request->search, $history)) {
+
+                array_unshift($history, $request->search);
+
+                $history = array_slice($history, 0, 8);
+
+                session()->put('search_history', $history);
+            }
         }
 
-        // Status Filter
         if ($request->status) {
 
             $query->where('status', $request->status);
@@ -29,16 +38,17 @@ class FlackController extends Controller
 
         $flacks = $query->get();
 
-        // Statistics
         $totalFlacks = Flack::count();
         $draftFlacks = Flack::where('status', 'Draft')->count();
         $publishedFlacks = Flack::where('status', 'Published')->count();
+        $searchHistory = session()->get('search_history', []);
 
         return view('flacks.index', compact(
             'flacks',
             'totalFlacks',
             'draftFlacks',
-            'publishedFlacks'
+            'publishedFlacks',
+            'searchHistory'
         ));
     }
 
@@ -101,5 +111,12 @@ class FlackController extends Controller
 
         return redirect()->route('flacks.index')
             ->with('success', 'Flack deleted successfully!');
+    }
+
+    public function clearSearchHistory()
+    {
+        session()->forget('search_history');
+
+        return redirect()->route('flacks.index');
     }
 }
