@@ -1,147 +1,57 @@
-<!DOCTYPE html>
-<html>
+@extends('flacks.layout')
 
-<head>
+@section('title', 'Edit Flack')
 
-    <title>Edit Flack</title>
+@section('content')
 
-    <style>
-        body {
-            font-family: Poppins;
-            background: #eef2f7;
-            margin: 0;
-        }
+<div class="w-full md:w-2/5 mx-auto mt-10">
 
-        .header {
-            background: linear-gradient(45deg, #2c3e50, #4b6584);
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+    <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-md">
 
-        .container {
-            width: 40%;
-            margin: auto;
-            margin-top: 60px;
-        }
+        <form action="{{ route('flacks.update', $flack->id) }}" method="POST">
 
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        }
+            @csrf
+            @method('PUT')
 
-        input,
-        textarea,
-        select {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-            box-sizing: border-box;
-        }
+            <label class="text-slate-600 dark:text-slate-300 text-sm">Title</label>
 
-        button {
-            background: linear-gradient(45deg, #ff9671, #ffc75f);
-            border: none;
-            color: white;
-            padding: 10px 18px;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        button:hover {
-            transform: scale(1.05);
-        }
-
-        .back {
-            display: inline-block;
-            margin-top: 10px;
-            text-decoration: none;
-            color: #2c3e50;
-        }
-
-        @media(max-width:768px) {
-
-            .container {
-                width: 92%;
-            }
-        }
-    </style>
-
-</head>
-
-<body>
-
-    <div class="header">
-        <h2>Edit Flack</h2>
-    </div>
-
-    <div class="container">
-
-        <div class="card">
-
-            <form action="{{ route('flacks.update', $flack->id) }}" method="POST">
-
-                @csrf
-                @method('PUT')
-
-                <label>Title</label>
-
-                <input
-                    type="text"
-                    name="title"
-                    value="{{ $flack->title }}"
-                >
-
-                <label>Description</label>
-
-                <textarea
-                    name="body"
-                    rows="5"
-                >{{ $flack->body }}</textarea>
-
-                <label>Status</label>
-
-                <select name="status">
-
-                    <option
-                        value="Draft"
-                        {{ $flack->status == 'Draft' ? 'selected' : '' }}
-                    >
-                        Draft
-                    </option>
-
-                    <option
-                        value="Published"
-                        {{ $flack->status == 'Published' ? 'selected' : '' }}
-                    >
-                        Published
-                    </option>
-
-                </select>
-
-                <button>
-                    Update Flack
-                </button>
-
-            </form>
-
-            <a
-                class="back"
-                href="{{ route('flacks.index') }}"
+            <input
+                type="text"
+                name="title"
+                value="{{ $flack->title }}"
+                class="w-full p-3 mt-2 mb-5 rounded-md border border-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
             >
-                ← Back
-            </a>
 
-        </div>
+            <label class="text-slate-600 dark:text-slate-300 text-sm">Description</label>
+
+            <textarea
+                name="body"
+                rows="5"
+                class="w-full p-3 mt-2 mb-5 rounded-md border border-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+            >{{ $flack->body }}</textarea>
+
+            <label class="text-slate-600 dark:text-slate-300 text-sm">Status</label>
+
+            <select
+                name="status"
+                class="w-full p-3 mt-2 mb-5 rounded-md border border-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+            >
+                <option value="Draft" {{ $flack->status == 'Draft' ? 'selected' : '' }}>Draft</option>
+                <option value="Published" {{ $flack->status == 'Published' ? 'selected' : '' }}>Published</option>
+            </select>
+
+            <button class="bg-gradient-to-r from-orange-400 to-yellow-400 text-white px-5 py-2.5 rounded-full hover:scale-105 transition">
+                Update Flack
+            </button>
+
+        </form>
+
+        <a href="{{ route('flacks.index') }}" class="inline-block mt-3 text-slate-700 dark:text-slate-300">
+            ← Back
+        </a>
 
     </div>
 
-</body>
+</div>
 
-</html>
+@endsection

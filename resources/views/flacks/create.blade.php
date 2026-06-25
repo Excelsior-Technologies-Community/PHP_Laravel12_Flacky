@@ -1,132 +1,57 @@
-<!DOCTYPE html>
-<html>
+@extends('flacks.layout')
 
-<head>
+@section('title', 'Create Flack')
 
-    <title>Create Flack</title>
+@section('content')
 
-    <style>
+<div class="w-full md:w-2/5 mx-auto mt-10">
 
-        body{
-            font-family:Poppins;
-            background:#eef2f7;
-            margin:0;
-        }
+    <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-md">
 
-        .header{
-            background:linear-gradient(45deg,#2c3e50,#4b6584);
-            color:white;
-            text-align:center;
-            padding:20px;
-        }
+        <form action="{{ route('flacks.store') }}" method="POST">
 
-        .container{
-            width:40%;
-            margin:auto;
-            margin-top:50px;
-        }
+            @csrf
 
-        .card{
-            background:white;
-            padding:30px;
-            border-radius:14px;
-            box-shadow:0 6px 15px rgba(0,0,0,0.08);
-        }
+            <label class="text-slate-600 dark:text-slate-300 text-sm">Title</label>
 
-        input,
-        textarea,
-        select{
-            width:100%;
-            padding:12px;
-            margin-top:10px;
-            margin-bottom:20px;
-            border-radius:8px;
-            border:1px solid #ddd;
-        }
-
-        button{
-            background:linear-gradient(45deg,#00c9a7,#845ec2);
-            border:none;
-            color:white;
-            padding:12px 18px;
-            border-radius:25px;
-            cursor:pointer;
-        }
-
-        .back{
-            display:inline-block;
-            margin-top:15px;
-            text-decoration:none;
-            color:#2c3e50;
-        }
-
-    </style>
-
-</head>
-
-<body>
-
-    <div class="header">
-
-        <h2>Create Flack</h2>
-
-    </div>
-
-    <div class="container">
-
-        <div class="card">
-
-            <form action="{{ route('flacks.store') }}" method="POST">
-
-                @csrf
-
-                <label>Title</label>
-
-                <input
-                    type="text"
-                    name="title"
-                    placeholder="Enter title"
-                >
-
-                <label>Description</label>
-
-                <textarea
-                    name="body"
-                    rows="6"
-                    placeholder="Enter description"
-                ></textarea>
-
-                <label>Status</label>
-
-                <select name="status">
-
-                    <option value="Draft">
-                        Draft
-                    </option>
-
-                    <option value="Published">
-                        Published
-                    </option>
-
-                </select>
-
-                <button>
-                    Create Flack
-                </button>
-
-            </form>
-
-            <a
-                class="back"
-                href="{{ route('flacks.index') }}"
+            <input
+                type="text"
+                name="title"
+                placeholder="Enter title"
+                class="w-full p-3 mt-2 mb-5 rounded-lg border border-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
             >
-                ← Back
-            </a>
 
-        </div>
+            <label class="text-slate-600 dark:text-slate-300 text-sm">Description</label>
+
+            <textarea
+                name="body"
+                rows="6"
+                placeholder="Enter description"
+                class="w-full p-3 mt-2 mb-5 rounded-lg border border-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+            ></textarea>
+
+            <label class="text-slate-600 dark:text-slate-300 text-sm">Status</label>
+
+            <select
+                name="status"
+                class="w-full p-3 mt-2 mb-5 rounded-lg border border-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+            >
+                <option value="Draft">Draft</option>
+                <option value="Published">Published</option>
+            </select>
+
+            <button class="bg-gradient-to-r from-teal-400 to-purple-500 text-white px-5 py-3 rounded-full hover:scale-105 transition">
+                Create Flack
+            </button>
+
+        </form>
+
+        <a href="{{ route('flacks.index') }}" class="inline-block mt-4 text-slate-700 dark:text-slate-300">
+            ← Back
+        </a>
 
     </div>
 
-</body>
+</div>
 
-</html>
+@endsection

@@ -8,3 +8,5 @@ Route::get('/', function () {
 });
 
 Route::resource('flacks', FlackController::class);
+
+Route::delete('/search-history/clear', [FlackController::class, 'clearSearchHistory'])->name('search.history.clear');

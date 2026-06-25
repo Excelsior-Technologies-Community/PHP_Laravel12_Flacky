@@ -1,154 +1,38 @@
-<!DOCTYPE html>
-<html>
+@extends('flacks.layout')
 
-<head>
+@section('title', 'View Flack')
 
-    <title>View Flack</title>
+@section('content')
 
-    <style>
-        body {
-            font-family: Poppins;
-            background: #eef2f7;
-            margin: 0;
-        }
+<div class="w-full md:w-1/2 mx-auto mt-10">
 
-        .header {
-            background: linear-gradient(45deg, #2c3e50, #4b6584);
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+    <div class="bg-white dark:bg-slate-800 p-9 rounded-2xl shadow-md">
 
-        .container {
-            width: 50%;
-            margin: auto;
-            margin-top: 60px;
-        }
-
-        .card {
-            background: white;
-            padding: 35px;
-            border-radius: 14px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .title {
-            font-size: 28px;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-
-        .body {
-            margin-top: 20px;
-            color: #555;
-            line-height: 1.8;
-            font-size: 16px;
-        }
-
-        .info {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #666;
-        }
-
-        .status {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 7px 16px;
-            border-radius: 20px;
-            color: white;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .draft {
-            background: #f59f00;
-        }
-
-        .published {
-            background: #40c057;
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 25px;
-            background: linear-gradient(45deg, #00c9a7, #845ec2);
-            color: white;
-            padding: 11px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            transform: scale(1.05);
-        }
-
-        @media(max-width:768px) {
-
-            .container {
-                width: 92%;
-            }
-
-            .card {
-                padding: 25px;
-            }
-        }
-    </style>
-
-</head>
-
-<body>
-
-    <div class="header">
-
-        <h2>Flack Details</h2>
-
-    </div>
-
-    <div class="container">
-
-        <div class="card">
-
-            <div class="title">
-                {{ $flack->title }}
-            </div>
-
-            <div class="body">
-                {{ $flack->body }}
-            </div>
-
-            <div class="info">
-
-                Status:
-
-                <span class="status {{ strtolower($flack->status) }}">
-
-                    {{ $flack->status }}
-
-                </span>
-
-            </div>
-
-            <div class="info">
-
-                Created:
-                
-                {{ $flack->created_at->format('d M Y') }}
-
-            </div>
-
-            <a
-                class="btn"
-                href="{{ route('flacks.index') }}"
-            >
-                ← Back to List
-            </a>
-
+        <div class="text-2xl font-semibold text-slate-800 dark:text-white">
+            {{ $flack->title }}
         </div>
 
+        <div class="mt-5 text-slate-600 dark:text-slate-300 leading-loose">
+            {{ $flack->body }}
+        </div>
+
+        <div class="mt-5 text-sm text-slate-500 dark:text-slate-400">
+            Status:
+            <span class="inline-block px-4 py-1.5 rounded-full text-white text-xs font-bold {{ $flack->status == 'Draft' ? 'bg-amber-500' : 'bg-green-500' }}">
+                {{ $flack->status }}
+            </span>
+        </div>
+
+        <div class="mt-3 text-sm text-slate-500 dark:text-slate-400">
+            Created: {{ $flack->created_at->format('d M Y') }}
+        </div>
+
+        <a href="{{ route('flacks.index') }}" class="inline-block mt-6 bg-gradient-to-r from-teal-400 to-purple-500 text-white px-6 py-3 rounded-full hover:scale-105 transition">
+            ← Back to List
+        </a>
+
     </div>
 
-</body>
+</div>
 
-</html>
+@endsection
